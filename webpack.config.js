@@ -1,12 +1,12 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const path = require("path");
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const dotenv = require('dotenv');
+const path = require('path');
 const port = process.env.PORT || 3000;
+dotenv.config();
+module.exports = (env) => ({
+  mode: 'development',
 
-module.exports = {
-  mode: "development",
-
-  entry: "/src/index.js",
+  entry: '/src/index.js',
 
   module: {
     rules: [
@@ -14,50 +14,40 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
         },
       },
       {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-            options: {
-              minimize: true,
-            },
-          },
-        ],
-      },
-      {
         test: /\.(css|scss)$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: "public/index.html",
+      template: 'public/index.html',
+      kakaoMapAPIUrl: process.env.REACT_APP_KAKAO_API_KEY,
     }),
   ],
 
   resolve: {
-    extensions: [".js", ".jsx", ".css"],
+    extensions: ['.js', '.jsx', '.css'],
     alias: {
-      components: path.resolve(__dirname, "src/components"),
+      components: path.resolve(__dirname, 'src/components'),
     },
   },
 
   output: {
-    path: path.resolve("dist"),
-    publicPath: "/",
-    filename: "bundle.js",
+    path: path.resolve('dist'),
+    publicPath: '/',
+    filename: 'bundle.js',
   },
 
   devServer: {
-    host: "localhost",
+    host: 'localhost',
     port: port,
     open: true,
     historyApiFallback: true,
   },
-};
+});
