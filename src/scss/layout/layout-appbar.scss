@@ -1,0 +1,15 @@
+.layout-appbar {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  width: 100%;
+  padding: 0 28px;
+  background-color: #ff4200;
+
+  .title {
+    width: 68px;
+    height: 24px;
+    color: #ffffff;
+    font-weight: 500;
+  }
+}
