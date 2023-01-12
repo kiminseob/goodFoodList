@@ -2,8 +2,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const dotenv = require('dotenv');
 const path = require('path');
 const port = process.env.PORT || 3000;
+
 dotenv.config();
-module.exports = (env) => ({
+
+module.exports = {
   mode: 'development',
 
   entry: '/src/index.js',
@@ -11,7 +13,7 @@ module.exports = (env) => ({
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|tsx|ts)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -32,7 +34,7 @@ module.exports = (env) => ({
   ],
 
   resolve: {
-    extensions: ['.js', '.jsx', '.css'],
+    extensions: ['.js', '.jsx', '.tsx', '.ts', '.scss'],
     alias: {
       components: path.resolve(__dirname, 'src/components'),
     },
@@ -50,4 +52,4 @@ module.exports = (env) => ({
     open: true,
     historyApiFallback: true,
   },
-});
+};
