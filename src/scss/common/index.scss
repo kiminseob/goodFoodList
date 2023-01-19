@@ -1,3 +1,7 @@
 @import './layout/';
 @import './map/';
 @import './card/';
+
+div {
+  box-sizing: border-box;
+}

@@ -1,7 +1,19 @@
+.card-list-container {
+  .card-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
 .card-container {
+  @media (max-width: 500px) {
+    margin: 0;
+  }
+
   width: 299px;
   height: 273px;
   position: relative;
+  margin: 0 50px;
 
   .card {
     width: 289px;
@@ -22,36 +34,51 @@
 
     .contents {
       padding: 19px;
-    }
 
-    .title {
-      font-family: 'Red Hat Display';
-      font-style: normal;
-      font-weight: 700;
-      font-size: 20px;
-      line-height: 26px;
-      color: #1a0700;
-    }
-
-    .tag-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .tag {
+      .title {
+        font-family: 'Red Hat Display';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 26px;
+        color: #1a0700;
+      }
+      .rating {
+        margin: 10px 0;
+        > span {
+          margin-left: 5.76px;
+          color: #1a0700;
+          opacity: 0.4;
+        }
+      }
+      .tag-container {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        width: 53.82px;
-        height: 22.42px;
-        background: rgba(252, 189, 33, 0.1);
-        border-radius: 5.60606px;
-
-        > p {
-          font-size: 11.79px;
-          color: #fcbd21;
-          font-weight: 500;
-          line-height: 16px;
-          letter-spacing: 0.02em;
+        width: 180px;
+        .tag {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 53.82px;
+          height: 22.42px;
+          background: rgba(252, 189, 33, 0.1);
+          border-radius: 5.60606px;
+          &.yellow {
+            color: #fcbd21;
+          }
+          &.blue {
+            color: #4b69fd;
+          }
+          &.red {
+            color: #ff4200;
+          }
+          > p {
+            font-size: 11.79px;
+            font-weight: 500;
+            line-height: 16px;
+            letter-spacing: 0.02em;
+          }
         }
       }
     }
