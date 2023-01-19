@@ -37,6 +37,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.tsx', '.ts', '.scss'],
     alias: {
       components: path.resolve(__dirname, 'src/components'),
+      constants: path.resolve(__dirname, 'src/constants'),
     },
   },
 

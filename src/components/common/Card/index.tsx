@@ -2,29 +2,41 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
-function Card() {
+type Card = {
+  thumbnail: string;
+  title: string;
+  rating: number;
+  tags: Array<string>;
+};
+
+type CardProps = {
+  card: Card;
+};
+
+const tagColors = ['yellow', 'blue', 'red'];
+
+function Card({ card }: CardProps) {
+  const { thumbnail, title, rating, tags } = card;
+
   return (
     <div className="card-container">
       <div className="card">
-        <div className="thumbnail">썸네일</div>
+        <div className="thumbnail">{thumbnail}</div>
         <div className="contents">
-          <div className="title">The Steack House</div>
-          <div>
+          <div className="title">{title}</div>
+          <div className="rating">
             <FontAwesomeIcon
               style={{ color: '#FFBA00' }}
               icon={solid('star')}
             />
+            <span>{rating}</span>
           </div>
           <div className="tag-container">
-            <div className="tag">
-              <p>tag</p>
-            </div>
-            <div className="tag">
-              <p>tag</p>
-            </div>
-            <div className="tag">
-              <p>tag</p>
-            </div>
+            {tags.map((tag, i) => (
+              <div className={`tag ${tagColors[i]}`}>
+                <p>{tag}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
