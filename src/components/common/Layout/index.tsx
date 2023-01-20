@@ -1,18 +1,15 @@
 import React from 'react';
 import AppBar from './AppBar';
 import Main from './Main';
+import { Outlet } from 'react-router-dom';
 
-type Props = {
-  children: JSX.Element;
-};
-
-function Layout(props: Props) {
-  const { children } = props;
-
+function Layout() {
   return (
     <>
       <AppBar />
-      <Main>{children}</Main>
+      <Main>
+        <Outlet />
+      </Main>
     </>
   );
 }

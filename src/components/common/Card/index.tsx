@@ -1,8 +1,10 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { Link } from 'react-router-dom';
 
 type Card = {
+  id: number;
   thumbnail: string;
   title: string;
   rating: number;
@@ -16,14 +18,16 @@ type CardProps = {
 const tagColors = ['yellow', 'blue', 'red'];
 
 function Card({ card }: CardProps) {
-  const { thumbnail, title, rating, tags } = card;
+  const { id, thumbnail, title, rating, tags } = card;
 
   return (
     <div className="card-container">
       <div className="card">
-        <div className="thumbnail">{thumbnail}</div>
+        <img className="thumbnail" src={thumbnail} />
         <div className="contents">
-          <div className="title">{title}</div>
+          <Link className="title" to={`/shop/${id}`}>
+            {title}
+          </Link>
           <div className="rating">
             <FontAwesomeIcon
               style={{ color: '#FFBA00' }}
@@ -33,7 +37,7 @@ function Card({ card }: CardProps) {
           </div>
           <div className="tag-container">
             {tags.map((tag, i) => (
-              <div className={`tag ${tagColors[i]}`}>
+              <div key={tag} className={`tag ${tagColors[i]}`}>
                 <p>{tag}</p>
               </div>
             ))}

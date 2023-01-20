@@ -36,12 +36,17 @@
       padding: 19px;
 
       .title {
-        font-family: 'Red Hat Display';
+        display: block;
+        width: 249px;
+        text-decoration: none;
         font-style: normal;
         font-weight: 700;
         font-size: 20px;
         line-height: 26px;
         color: #1a0700;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .rating {
         margin: 10px 0;
