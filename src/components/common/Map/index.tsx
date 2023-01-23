@@ -1,20 +1,29 @@
 import React, { useEffect } from 'react';
+import { createMap, keywordSearch } from 'utils/map';
 
-declare global {
-  interface Window {
-    kakao: any;
-  }
-}
+type MapProps = {
+  detail: {
+    id: number;
+    thumbnail: string;
+    title: string;
+    rating: number;
+    tags: string[];
+    keyword: string;
+    address: string;
+  };
+};
 
-function Map() {
-  const { kakao } = window;
+function Map(props: MapProps) {
+  const { detail } = props;
+  const { keyword, id } = detail;
+
+  const initMap = () => {
+    const map = createMap();
+    keywordSearch(map, keyword, id);
+  };
 
   useEffect(() => {
-    const defaultOptions = {
-      center: new kakao.maps.LatLng(33.450701, 126.570667),
-      level: 3,
-    };
-    new kakao.maps.Map(document.getElementById('kakaoMap'), defaultOptions);
+    initMap();
   }, []);
 
   return <div id="kakaoMap"></div>;
