@@ -64,9 +64,9 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 53.82px;
+          min-width: 53.82px;
           height: 22.42px;
-          background: rgba(252, 189, 33, 0.1);
+          background: #fcbd2110;
           border-radius: 5.60606px;
           &.yellow {
             color: #fcbd21;

@@ -29,7 +29,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'public/index.html',
-      kakaoMapAPIUrl: process.env.REACT_APP_KAKAO_API_KEY,
+      clientId: process.env.REACT_APP_NAVER_CLIENT_ID,
     }),
   ],
 
@@ -39,6 +39,8 @@ module.exports = {
       components: path.resolve(__dirname, 'src/components'),
       constants: path.resolve(__dirname, 'src/constants'),
       utils: path.resolve(__dirname, 'src/utils'),
+      db: path.resolve(__dirname, 'src/db'),
+      api: path.resolve(__dirname, 'src/api'),
     },
   },
 

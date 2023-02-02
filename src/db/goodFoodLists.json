@@ -1,0 +1,32 @@
+[
+  {
+    "id": 0,
+    "shopId": 1113573535,
+    "title": "가장맛있는족발 분당정자점",
+    "description": "둘이 먹다 하나 죽어도 모를 족발",
+    "address": "정자동 63-1",
+    "thumbnail": "/images/shop.png",
+    "rating": 4.44,
+    "tags": ["족발", "보쌈", "막국수"]
+  },
+  {
+    "id": 1,
+    "shopId": 1113573535,
+    "title": "명품숯불숙성삼겹",
+    "description": "둘이 먹다 하나 죽어도 모를 삼겹",
+    "address": "정자동 65-1",
+    "thumbnail": "/images/shop.png",
+    "rating": 4.57,
+    "tags": ["삼겹살", "목살", "김치찌개"]
+  },
+  {
+    "id": 2,
+    "shopId": 1113573535,
+    "title": "바삭돈카츠 정자점",
+    "description": "둘이 먹다 하나 죽어도 모를 돈카츠",
+    "address": "정자동 159-1",
+    "thumbnail": "/images/shop.png",
+    "rating": 4.4,
+    "tags": ["돈카츠", "치즈카츠", "카레라이스"]
+  }
+]

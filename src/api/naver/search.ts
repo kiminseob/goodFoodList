@@ -1,3 +1,6 @@
-const baseUrl = 'https://openapi.naver.com/v1/search';
+const baseUrl = 'https://map.naver.com/v5/api/sites/summary/';
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const fetcher = async (id: number) =>
+  fetch(baseUrl + id).then((res) => res.json());
+
+export default fetcher;
