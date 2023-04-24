@@ -1,10 +1,8 @@
-import * as React from 'react';
-const { useEffect } = React;
+import React, { useEffect } from 'react';
 import Map from 'components/common/Map';
-import shopDetail from 'constants/data/cardDetail';
 import goodFoodLists from 'db/goodFoodLists.json';
 import { useParams } from 'react-router-dom';
-import fetcher from 'api/naver/search';
+import useSummary from 'hooks/useSummary';
 
 type Params = {
   shopId: string;
@@ -16,17 +14,9 @@ function ShopDetailPage() {
 
   if (!detail) return null;
 
+  const { summary, isLoading } = useSummary(detail?.shopId);
   const { title, description, address, thumbnail, rating, tags } = detail;
-
-  const fetch = async () => {
-    const a = await fetcher(parseInt(detail.shopId));
-    console.log(a);
-  };
-
-  useEffect(() => {
-    fetch();
-  }, []);
-
+  console.log(summary);
   return (
     <>
       <Map detail={detail} />

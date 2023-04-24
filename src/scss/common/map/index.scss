@@ -1,4 +1,18 @@
-#kakaoMap {
-  width: 750px;
-  height: 450px;
+.map-container {
+  width: 100%;
+  height: 517px;
+
+  #map {
+    height: 100%;
+  }
+
+  .marker {
+    width: 48px;
+    height: 48px;
+  }
+
+  .info-window {
+    color: #000000;
+    font-weight: 600;
+  }
 }

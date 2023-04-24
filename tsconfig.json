@@ -19,6 +19,7 @@
     "isolatedModules": true,
     "jsx": "react",
     "declaration": true,
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "downlevelIteration": true
   }
 }

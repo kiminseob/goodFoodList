@@ -1,6 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { StarIcon } from 'icons';
 import { Link } from 'react-router-dom';
 
 type Card = {
@@ -29,10 +28,7 @@ function Card({ card }: CardProps) {
             {title}
           </Link>
           <div className="rating">
-            <FontAwesomeIcon
-              style={{ color: '#FFBA00' }}
-              icon={solid('star')}
-            />
+            <StarIcon />
             <span>{rating}</span>
           </div>
           <div className="tag-container">

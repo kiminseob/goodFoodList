@@ -40,7 +40,10 @@ module.exports = {
       constants: path.resolve(__dirname, 'src/constants'),
       utils: path.resolve(__dirname, 'src/utils'),
       db: path.resolve(__dirname, 'src/db'),
-      api: path.resolve(__dirname, 'src/api'),
+      apis: path.resolve(__dirname, 'src/apis'),
+      hooks: path.resolve(__dirname, 'src/hooks'),
+      icons: path.resolve(__dirname, 'src/icons'),
+      store: path.resolve(__dirname, 'src/store'),
     },
   },
 

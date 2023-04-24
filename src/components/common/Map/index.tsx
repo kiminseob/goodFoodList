@@ -1,34 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
+import useStore from 'hooks/useStore';
 import { createMap } from 'utils/map';
 
-type MapProps = {
-  detail: {
-    id: number;
-    title: string;
-    description: string;
-    address: string;
-    thumbnail: string;
-    rating: number;
-    tags: string[];
-  };
-};
-
-function Map(props: MapProps) {
-  const { detail } = props;
+function Map(props: Record<string, any>) {
+  const { MapStore } = useStore();
+  const [map, setMap] = useState(null);
+  const { items } = props;
 
   const initMap = () => {
     const map = createMap();
+    setMap(map);
   };
 
   useEffect(() => {
     initMap();
   }, []);
 
+  useEffect(() => {
+    if (!map) return;
+
+    MapStore.searchAddressToCoordinate(map, items);
+
+    return () => {
+      MapStore.removeMarkers();
+    };
+  }, [map, items.address]);
+
   return (
-    <>
-      <div id="map" style={{ width: '100%', height: '400px' }}></div>
-    </>
+    <div className="map-container">
+      <div id="map"></div>
+    </div>
   );
 }
 
-export default Map;
+export default memo(Map);

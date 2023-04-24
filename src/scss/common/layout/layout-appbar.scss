@@ -1,6 +1,7 @@
 .layout-appbar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 52px;
   width: 100%;
   padding: 0 28px;
@@ -11,5 +12,6 @@
     height: 24px;
     color: #ffffff;
     font-weight: 500;
+    text-decoration: none;
   }
 }
