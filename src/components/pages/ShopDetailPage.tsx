@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Map from 'components/common/Map';
-import goodFoodLists from 'db/goodFoodLists.json';
 import { useParams } from 'react-router-dom';
-import useSummary from 'hooks/useSummary';
+import useGoogleSheet from 'libs/googlesheet';
 
 type Params = {
   shopId: string;
@@ -10,26 +9,41 @@ type Params = {
 
 function ShopDetailPage() {
   const { shopId } = useParams<Params>();
-  const detail = goodFoodLists.filter(({ id }) => id === parseInt(shopId!))[0];
+  const [sheetRows] = useGoogleSheet(0);
+  const detail = sheetRows.filter((row, i) => row.id === shopId)[0];
 
   if (!detail) return null;
 
-  const { summary, isLoading } = useSummary(detail?.shopId);
-  const { title, description, address, thumbnail, rating, tags } = detail;
-  console.log(summary);
   return (
-    <>
-      <Map detail={detail} />
-      <div>{title}</div>
-      <div>{description}</div>
-      <div>{address}</div>
-      <div>{thumbnail}</div>
-
-      <div>
-        {rating}
-        {tags}
+    <div>
+      <div style={{ width: '517px', height: '517px', margin: 'auto' }}>
+        <Map items={detail} />
       </div>
-    </>
+      {<DetailView detail={detail} />}
+    </div>
+  );
+}
+
+function DetailView({ detail }: any) {
+  const {
+    name,
+    tel,
+    category,
+    keywords,
+    address,
+    bizhourInfo,
+    description,
+    imageURL,
+  } = detail;
+
+  return (
+    <div className="detail-container">
+      <div>{name}</div>
+      <div>{address}</div>
+      <div>{tel}</div>
+      <div>{bizhourInfo}</div>
+      <pre>{description}</pre>
+    </div>
   );
 }
 
