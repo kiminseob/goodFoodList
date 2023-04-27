@@ -13,13 +13,10 @@ function useInfiniteScroll(
     observer: IntersectionObserver
   ) => {
     const { isIntersecting } = entries[0];
-    console.log(data?.result?.place?.totalCount, page);
 
     if (data?.result?.place?.totalCount <= page * 5) observer.disconnect();
 
-    if (isIntersecting) {
-      setPage((prev: number) => prev + 1);
-    }
+    if (isIntersecting) setPage((prev: number) => prev + 1);
   };
 
   useEffect(() => {
