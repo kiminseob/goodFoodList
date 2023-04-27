@@ -17,14 +17,14 @@ function Map(props: Record<string, any>) {
   }, []);
 
   useEffect(() => {
-    if (!map) return;
+    if (!map || !items) return;
 
     MapStore.searchAddressToCoordinate(map, items);
 
     return () => {
       MapStore.removeMarkers();
     };
-  }, [map, items.address]);
+  }, [map, items?.address]);
 
   return (
     <div className="map-container">

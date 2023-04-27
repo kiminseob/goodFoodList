@@ -7,7 +7,6 @@ function useRestaurant(query: string, page: number) {
     query ? { query, page } : null,
     restaurantFetcher
   );
-  console.log('use rest');
 
   return { data, error, isLoading };
 }
