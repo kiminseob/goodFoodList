@@ -1,40 +1,33 @@
 import React from 'react';
 import { StarIcon } from 'icons';
 import { Link } from 'react-router-dom';
-
-type Card = {
-  id: number;
-  thumbnail: string;
-  title: string;
-  rating: number;
-  tags: Array<string>;
-};
+import { GoogleSpreadsheetRow } from 'google-spreadsheet';
 
 type CardProps = {
-  card: Card;
+  card: GoogleSpreadsheetRow;
 };
 
 const tagColors = ['yellow', 'blue', 'red'];
 
 function Card({ card }: CardProps) {
-  const { id, thumbnail, title, rating, tags } = card;
+  const { id, name, rating, category, imageURL } = card;
 
   return (
     <div className="card-container">
       <div className="card">
-        <img className="thumbnail" src={thumbnail} />
+        <img className="thumbnail" src={imageURL} />
         <div className="contents">
-          <Link className="title" to={`/shop/${id}`}>
-            {title}
+          <Link className="title" to={`/shop/${id}`} state={card}>
+            {name}
           </Link>
           <div className="rating">
             <StarIcon />
-            <span>{rating}</span>
+            <span>{rating ?? '평점 없음'}</span>
           </div>
           <div className="tag-container">
-            {tags.map((tag, i) => (
-              <div key={tag} className={`tag ${tagColors[i]}`}>
-                <p>{tag}</p>
+            {category.split(',').map((v: string, i: number) => (
+              <div key={i} className={`tag ${tagColors[i % 3]}`}>
+                <p>{v}</p>
               </div>
             ))}
           </div>
