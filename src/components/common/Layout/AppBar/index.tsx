@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AddIcon } from 'icons';
+import { AddIcon, HomeIcon } from 'icons';
 import useStore from 'hooks/useStore';
 import SearchList from 'components/views/SearchList';
 
@@ -14,6 +14,7 @@ function AppBar() {
   return (
     <div className="layout-appbar">
       <Link className="title" to="/">
+        <HomeIcon />
         굿푸리
       </Link>
       <AddIcon onClick={handleClickAdd} />

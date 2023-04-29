@@ -3,8 +3,17 @@
 @import './card';
 @import './dialog';
 
+:root {
+  --font-size-lg: clamp(2rem, 2vw, 3rem);
+  --font-size-md: clamp(1.5rem, 2vw, 2rem);
+  --font-size-sm: clamp(1rem, 2vw, 1.5rem);
+
+  --map-size-lg: clamp(200px, 2vw, 517px);
+}
+
 body {
   height: 100vh;
+  margin: 0;
   background-color: #f8f8f8;
 }
 
@@ -30,6 +39,61 @@ button {
   }
 }
 
+h1 {
+  margin: 0;
+  font-size: var(--font-size-lg);
+}
+
+h2 {
+  margin: 0;
+  font-size: var(--font-size-md);
+}
+
+p {
+  font-size: var(--font-size-sm);
+}
+
+blockquote {
+  font-size: var(--font-size-md);
+}
+
 a {
+  font-size: var(--font-size-sm);
   text-decoration: none;
+}
+
+label {
+  min-width: fit-content;
+  margin-right: 1.5rem;
+}
+
+input[type='submit'] {
+  color: #f8f8f8;
+  background-color: #1e3050;
+  border-radius: 16px;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
+input[type='submit'] {
+  color: #f8f8f8;
+  background-color: #1e3050;
+  border-radius: 16px;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  max-width: 150px;
+}
+input[type='submit']:disabled {
+  color: rgba(16, 16, 16, 0.3);
+  background-color: white;
+  border-color: rgba(195, 195, 195, 0.3);
+}
+.fa-disabled {
+  opacity: 0.2;
+  pointer-events: none;
+}
+.fa-actived {
+  cursor: pointer;
+  color: #1e3050;
 }

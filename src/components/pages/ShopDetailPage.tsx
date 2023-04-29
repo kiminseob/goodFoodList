@@ -1,7 +1,8 @@
 import React from 'react';
-import Map from 'components/common/Map';
 import { useParams } from 'react-router-dom';
 import useGoogleSheet from 'libs/googlesheet';
+import DetailView from 'components/views/DetailView';
+import ExpenseDetail from 'components/views/DetailView/ExpenseDetail';
 
 type Params = {
   shopId: string;
@@ -15,34 +16,9 @@ function ShopDetailPage() {
   if (!detail) return null;
 
   return (
-    <div>
-      <div style={{ width: '517px', height: '517px', margin: 'auto' }}>
-        <Map items={detail} />
-      </div>
-      {<DetailView detail={detail} />}
-    </div>
-  );
-}
-
-function DetailView({ detail }: any) {
-  const {
-    name,
-    tel,
-    category,
-    keywords,
-    address,
-    bizhourInfo,
-    description,
-    imageURL,
-  } = detail;
-
-  return (
     <div className="detail-container">
-      <div>{name}</div>
-      <div>{address}</div>
-      <div>{tel}</div>
-      <div>{bizhourInfo}</div>
-      <pre>{description}</pre>
+      <DetailView detail={detail} />
+      <ExpenseDetail />
     </div>
   );
 }
