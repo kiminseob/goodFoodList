@@ -1,132 +1,49 @@
-import React, { useState } from 'react';
-import {
-  ArrowLeftIcon,
-  ArrowDownIcon,
-  CircleCheckIcon,
-  CircleAddIcon,
-} from 'icons';
-import { Label, Input } from 'components/common/Element';
+import React from 'react';
+import { Label, Typograpy } from 'components/common/Element';
+import { ShopDetailType } from 'types/shopDetail';
 
-function ExpenseDetail() {
-  const currentDate = new Date()
-    .toLocaleDateString()
-    .replace(/\./g, '')
-    .split(' ')
-    .map((v: string, i) => (i > 0 && v.length < 2 ? '0' + v : v))
-    .join('-');
-  const [isExtend, setIsExtend] = useState(false);
-  const [expenseForm, setExpenseForm] = useState({
-    date: currentDate,
-    headcount: '',
-    price: '',
-    menu: '',
-  });
-  const isFulfilledForm = () => Object.values(expenseForm).every((v) => v);
-  const handleClickExtend = () => {
-    setIsExtend((prev) => !prev);
-  };
-
-  const handleSubmitExpense = (e: React.MouseEvent<SVGSVGElement>) => {
-    const { date, headcount, price, menu } = expenseForm;
-    console.log(date, headcount, price, menu);
-  };
-
-  const handleExpenseForm = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setExpenseForm((prev) => ({ ...prev, [name]: value }));
-  };
+function ExpenseDetail({ detail }: { detail: ShopDetailType }) {
+  const expense = JSON.parse(detail.expense ?? null);
 
   return (
-    <>
-      <div className="detail-contents">
-        지출 내역 등록하기
-        {isExtend ? (
-          <ArrowDownIcon onClick={handleClickExtend} />
-        ) : (
-          <ArrowLeftIcon onClick={handleClickExtend} />
-        )}
-      </div>
-      {isExtend && (
-        <div className="detail-expense">
-          <form className="form-container">
-            <div className="submit-container">
-              <div>
-                <CircleAddIcon
-                  disabled={!isFulfilledForm()}
-                  onClick={handleSubmitExpense}
-                  beat={isFulfilledForm()}
-                />
-              </div>
-            </div>
-            <div>
-              <div className="input-container">
-                <Label value="날짜" htmlFor="date" />
-                <Input
-                  onChange={handleExpenseForm}
-                  type="date"
-                  id="date"
-                  name="date"
-                  value={expenseForm.date}
-                  required
-                />
-                {expenseForm.date && <CircleCheckIcon />}
-              </div>
-              <div className="input-container">
-                <Label value="인원" htmlFor="headcount" />
-                <Input
-                  onChange={handleExpenseForm}
-                  type="number"
-                  id="headcount"
-                  name="headcount"
-                  value={expenseForm.headcount}
-                  min={0}
-                  required
-                />
-                {expenseForm.headcount && <CircleCheckIcon />}
-              </div>
-              <div className="input-container">
-                <Label value="가격" htmlFor="price" />
-                <Input
-                  onChange={handleExpenseForm}
-                  type="number"
-                  id="price"
-                  name="price"
-                  value={expenseForm.price}
-                  min={0}
-                  required
-                />
-                {expenseForm.price && <CircleCheckIcon />}
-              </div>
-              <div className="input-container">
-                <Label value="메뉴" htmlFor="menu" />
-                <textarea
-                  onChange={handleExpenseForm}
-                  id="menu"
-                  name="menu"
-                  value={expenseForm.menu}
-                  rows={5}
-                  cols={30}
-                  required
-                />
-                {expenseForm.menu && <CircleCheckIcon />}
-              </div>
-            </div>
-          </form>
-        </div>
-      )}
-    </>
+    <div className="detail-contents">
+      <Typograpy type="h2" value="지출 내역" />
+      {expense && <Expense expense={expense} />}
+    </div>
   );
 }
 
-function ExpenseInput(props: { expense: string[] }) {
+function Expense(props: {
+  expense: Array<{
+    date: string;
+    headcount: number;
+    price: number;
+    menu: string;
+  }>;
+}) {
   const { expense } = props;
+  console.log(expense);
 
   return (
     <ul>
-      {expense.map((v) => {
-        return v;
+      <li className="expense-list">
+        <Label value="날짜" />
+        <Label value="인원" />
+        <Label value="비용" />
+        <Label value="메뉴" />
+      </li>
+      {expense.map(({ date, headcount, price, menu }) => {
+        return (
+          <li className="expense-list">
+            <Typograpy type="p2" value={date} />
+            <Typograpy type="p2" value={headcount + ' 명'} />
+            <Typograpy
+              type="p2"
+              value={Number(price).toLocaleString('ko-KR') + ' 원'}
+            />
+            <Typograpy type="p2" value={menu} />
+          </li>
+        );
       })}
     </ul>
   );

@@ -1,8 +1,10 @@
 import React from 'react';
 import Map from 'components/common/Map';
 import { TelIcon, AddressIcon, TimerIcon } from 'icons';
+import { Typograpy } from 'components/common/Element';
+import { ShopDetailType } from 'types/shopDetail';
 
-function ShopDetail({ detail }: any) {
+function ShopDetail({ detail }: { detail: ShopDetailType }) {
   const {
     name,
     tel,
@@ -18,7 +20,7 @@ function ShopDetail({ detail }: any) {
     <>
       <Map items={detail} />
       <div className="detail-contents">
-        <h2>{name}</h2>
+        <Typograpy type="h2" value={name} />
       </div>
       <div className="detail-contents">
         <div>
@@ -27,11 +29,11 @@ function ShopDetail({ detail }: any) {
         </div>
         <div>
           <TelIcon />
-          {tel}
+          {tel ?? '정보 없음'}
         </div>
         <div>
           <TimerIcon />
-          {bizhourInfo}
+          {bizhourInfo ?? '정보 없음'}
         </div>
         <pre>{description}</pre>
       </div>

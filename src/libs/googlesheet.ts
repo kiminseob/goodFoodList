@@ -6,13 +6,9 @@ import {
 } from 'google-spreadsheet';
 import credential from 'db/googleSpreadsheet.json';
 import _ from 'lodash';
+import { SheetFn } from 'types/googleSheet';
 
-type useGoogleSheetReturnType = [
-  GoogleSpreadsheetRow[],
-  (values: {
-    [header: string]: string | number | boolean;
-  }) => Promise<GoogleSpreadsheetRow | undefined>
-];
+type useGoogleSheetReturnType = [GoogleSpreadsheetRow[], SheetFn];
 
 const useGoogleSheet = (sheetId: number): useGoogleSheetReturnType => {
   const [sheet, setSheet] = useState<GoogleSpreadsheetWorksheet>();
@@ -43,11 +39,29 @@ const useGoogleSheet = (sheetId: number): useGoogleSheetReturnType => {
     return await sheet?.addRow(row);
   };
 
+  const updateSheetRows = async (
+    rowIndex: number,
+    updatedValue: string | Record<string, string>,
+    header?: string
+  ) => {
+    if (typeof updatedValue === 'object') {
+      Object.entries(updatedValue).forEach(
+        ([k, v]) => (sheetRows[rowIndex - 2][k] = v)
+      );
+    }
+
+    if (header) {
+      sheetRows[rowIndex - 2][header] = updatedValue;
+    }
+
+    return await sheetRows[rowIndex - 2].save();
+  };
+
   useEffect(() => {
     fetchGoogleSheetRows();
   }, []);
 
-  return [sheetRows, addSheetRows];
+  return [sheetRows, { addSheetRows, updateSheetRows }];
 };
 
 export const getGoogleSheet: () => Promise<GoogleSpreadsheet> = async () => {

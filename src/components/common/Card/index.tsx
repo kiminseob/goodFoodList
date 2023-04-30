@@ -15,7 +15,7 @@ function Card({ card }: CardProps) {
   return (
     <div className="card-container">
       <div className="card">
-        <img className="thumbnail" src={imageURL} />
+        <img className="thumbnail" src={imageURL ?? 'images/shop.png'} />
         <div className="contents">
           <Link className="title" to={`/shop/${id}`} state={card}>
             {name}

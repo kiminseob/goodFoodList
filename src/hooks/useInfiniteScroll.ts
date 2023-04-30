@@ -22,7 +22,7 @@ function useInfiniteScroll(
   useEffect(() => {
     const option = {
       root: document.querySelector('#scrollArea'),
-      rootMargin: '0px',
+      rootMargin: '1px',
       threshold: 0,
     };
     const observer = new IntersectionObserver(handleObserver, option);

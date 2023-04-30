@@ -31,7 +31,7 @@
     .input-container {
       display: flex;
       margin: 1rem 0;
-      align-items: flex-start;
+      align-items: baseline;
     }
     .submit-container {
       position: absolute;
@@ -44,6 +44,34 @@
       > div {
         display: flex;
         align-items: center;
+      }
+    }
+  }
+}
+ul {
+  li.expense-list:first-child {
+  }
+
+  li.expense-list {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+    > p {
+      width: 25%;
+    }
+
+    label {
+      margin-top: 1rem;
+      font-weight: 600;
+      width: 25%;
+      position: relative;
+      &::after {
+        content: '';
+        margin-top: 0.5rem;
+        border-bottom: 1px solid #1e305032;
+        width: 90%;
+        display: block;
       }
     }
   }

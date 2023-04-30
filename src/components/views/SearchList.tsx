@@ -5,6 +5,7 @@ import useRestaurant from 'hooks/useRestaurant';
 import useInfiniteScroll from 'hooks/useInfiniteScroll';
 import useGoogleSheet from 'libs/googlesheet';
 import useSummary from 'hooks/useSummary';
+import { info } from 'utils/toast';
 
 type SearchItemType = {
   [header: string]: string;
@@ -18,12 +19,12 @@ function SearchList() {
   const [keyword, setKeyword] = useState('');
   const { data, error, isLoading } = useRestaurant(keyword, page);
   const { loader } = useInfiniteScroll(placeList, data, setPage, page);
-  const [sheetRows, addSheetRows] = useGoogleSheet(0);
+  const [sheetRows, { addSheetRows, updateSheetRows }] = useGoogleSheet(0);
   const { summary } = useSummary(searchItem.id);
 
   useEffect(() => {
     setPlaceList((prev) => [...prev, ...(data?.result?.place?.list ?? [])]);
-  }, [data?.result?.place?.page]);
+  }, [data?.result?.place?.page, keyword]);
 
   const toggleTarget = (e: React.MouseEvent<HTMLLIElement>) => {
     const activedTarget = [...document.querySelectorAll('.search-list')].filter(
@@ -56,9 +57,10 @@ function SearchList() {
   };
 
   const handleClickSearch = () => {
-    if (!value.trim()) return;
-    setKeyword(value);
+    if (!value.trim() || value === keyword) return;
     setPlaceList([]);
+    setPage(1);
+    setKeyword(value);
   };
 
   const handleClickAddItem = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -68,32 +70,36 @@ function SearchList() {
 
     if (isConfirm) {
       try {
-        const isRegistered = sheetRows.some(({ id }) => id === searchItem.id);
-        if (isRegistered) {
-          alert(`'${searchItem.name}'는 이미 등록되어 있습니다.`);
+        const targetRow = sheetRows.filter(({ id }) => id === searchItem.id)[0];
+        const { tel, category } = searchItem;
+        const {
+          id,
+          name,
+          keywords,
+          address,
+          bizhourInfo,
+          description,
+          imageURL,
+        } = summary;
+        const mergedItem = {
+          tel,
+          category,
+          id,
+          name,
+          keywords,
+          address,
+          bizhourInfo,
+          description,
+          imageURL,
+        };
+        if (targetRow) {
+          alert(
+            `'${searchItem.name}'는 이미 등록되어 있습니다. 업데이트 하시겠습니까?`
+          );
+          updateSheetRows(targetRow.rowIndex, mergedItem);
         } else {
-          const { tel, category } = searchItem;
-          const {
-            id,
-            name,
-            keywords,
-            address,
-            bizhourInfo,
-            description,
-            imageURL,
-          } = summary;
-          await addSheetRows({
-            tel,
-            category,
-            id,
-            name,
-            keywords,
-            address,
-            bizhourInfo,
-            description,
-            imageURL,
-          });
-          alert(`'${searchItem.name}'가 맛집 리스트에 추가되었습니다.`);
+          await addSheetRows(mergedItem);
+          info(`'${searchItem.name}'가 맛집 리스트에 추가되었습니다.`);
         }
       } catch (e) {
         console.error(e);
@@ -165,7 +171,9 @@ function PlaceList(props: PlaceListType) {
         ))}
         {!error && <li ref={loader} />}
       </ul>
-      <button onClick={handleClickAddItem}>맛집 추가하기</button>
+      <button className="add-shop-btn" onClick={handleClickAddItem}>
+        맛집 추가하기
+      </button>
     </>
   );
 }
