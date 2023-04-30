@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import useGoogleSheet from 'libs/googlesheet';
 import DetailView from 'components/views/DetailView';
+import { observer } from 'mobx-react';
 
 type Params = {
   shopId: string;
@@ -21,4 +22,4 @@ function ShopDetailPage() {
   );
 }
 
-export default ShopDetailPage;
+export default observer(ShopDetailPage);

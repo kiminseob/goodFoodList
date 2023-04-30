@@ -1,10 +1,12 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 import Card from 'components/common/Card';
 import useGoogleSheet from 'libs/googlesheet';
 
 function Home() {
   const [sheetRows] = useGoogleSheet(0);
-  const cardList = sheetRows.map((row, i) => <Card key={row.id} card={row} />);
+
+  const cardList = sheetRows.map((row) => <Card key={row.id} card={row} />);
 
   return (
     <div className="card-list-container">
@@ -13,4 +15,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default observer(Home);

@@ -4,6 +4,7 @@
     "es6": true
   },
   "root": true,
+  "parser": "babel-eslint",
   "extends": ["react-app", "airbnb"],
   "plugins": ["prettier"],
   "rules": {

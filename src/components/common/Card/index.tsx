@@ -15,7 +15,12 @@ function Card({ card }: CardProps) {
   return (
     <div className="card-container">
       <div className="card">
-        <img className="thumbnail" src={imageURL ?? 'images/shop.png'} />
+        <img
+          referrer-policy="no-referrer"
+          className="thumbnail"
+          src={imageURL ?? 'images/shop.png'}
+          alt="이미지 경로가 잘못되었습니다."
+        />
         <div className="contents">
           <Link className="title" to={`/shop/${id}`} state={card}>
             {name}

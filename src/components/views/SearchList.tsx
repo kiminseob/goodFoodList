@@ -6,6 +6,7 @@ import useInfiniteScroll from 'hooks/useInfiniteScroll';
 import useGoogleSheet from 'libs/googlesheet';
 import useSummary from 'hooks/useSummary';
 import { info } from 'utils/toast';
+import { observer } from 'mobx-react';
 
 type SearchItemType = {
   [header: string]: string;
@@ -178,4 +179,4 @@ function PlaceList(props: PlaceListType) {
   );
 }
 
-export default SearchList;
+export default observer(SearchList);
