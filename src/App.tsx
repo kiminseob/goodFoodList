@@ -4,6 +4,8 @@ import Layout from 'components/common/Layout';
 import Home from 'components/pages/Home';
 import ShopDetailPage from 'components/pages/ShopDetailPage';
 import AddDialog from 'components/common/Dialog/AddDialog';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
         </Route>
       </Routes>
       <AddDialog />
+      <ToastContainer />
     </>
   );
 }

@@ -10,7 +10,7 @@ import './scss/index.scss';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider {...store}>
     <React.StrictMode>
-      {/* <Reset /> */}
+      <Reset />
       <BrowserRouter>
         <App />
       </BrowserRouter>
