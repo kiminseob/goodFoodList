@@ -16,7 +16,7 @@ function Card({ card }: CardProps) {
     <div className="card-container">
       <div className="card">
         <img
-          referrer-policy="no-referrer"
+          referrerPolicy="no-referrer"
           className="thumbnail"
           src={imageURL ?? 'images/shop.png'}
           alt="이미지 경로가 잘못되었습니다."
