@@ -53,6 +53,7 @@ module.exports = {
       icons: path.resolve(__dirname, 'src/icons'),
       store: path.resolve(__dirname, 'src/store'),
       libs: path.resolve(__dirname, 'src/libs'),
+      types: path.resolve(__dirname, 'src/types'),
     },
     fallback: {
       assert: require.resolve('assert'),

@@ -1,15 +1,19 @@
 import React from 'react';
 import AppBar from './AppBar';
 import Main from './Main';
+import Menu from './Menu';
 import { Outlet } from 'react-router-dom';
 
 function Layout() {
   return (
     <>
       <AppBar />
-      <Main>
-        <Outlet />
-      </Main>
+      <div style={{ display: 'flex', marginTop: '52px' }}>
+        {/* <Menu /> */}
+        <Main>
+          <Outlet />
+        </Main>
+      </div>
     </>
   );
 }

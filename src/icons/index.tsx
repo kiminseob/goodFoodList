@@ -96,6 +96,28 @@ const HandPointDownIcon = (props: Props) => (
     bounce
   />
 );
+const GenderWomanIcon = (props: Props) => (
+  <FontAwesomeIcon
+    {...props}
+    style={{ color: '#c90076', marginRight: '0.5rem' }}
+    icon={solid('venus')}
+  />
+);
+const GenderManIcon = (props: Props) => (
+  <FontAwesomeIcon
+    {...props}
+    style={{ color: '#2986cc', marginRight: '0.5rem' }}
+    icon={solid('mars')}
+  />
+);
+const LogoutIcon = (props: Props) => (
+  <FontAwesomeIcon
+    {...props}
+    style={{ color: '#ffffff', marginLeft: '1rem', cursor: 'pointer' }}
+    icon={solid('arrow-right-from-bracket')}
+  />
+);
+
 export {
   StarIcon,
   AddIcon,
@@ -109,4 +131,7 @@ export {
   HomeIcon,
   CircleCheckIcon,
   HandPointDownIcon,
+  GenderWomanIcon,
+  GenderManIcon,
+  LogoutIcon,
 };

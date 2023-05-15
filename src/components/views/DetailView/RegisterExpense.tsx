@@ -7,7 +7,7 @@ import {
 } from 'icons';
 import { Label, Input } from 'components/common/Element';
 import { info, success } from 'utils/toast';
-import { SheetFn } from 'types/googleSheet';
+import { SheetFn } from 'types/googlesheet';
 import { ShopDetailType } from 'types/shopDetail';
 
 function RegisterExpense({

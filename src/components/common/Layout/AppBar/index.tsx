@@ -1,15 +1,15 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { AddIcon, HomeIcon } from 'icons';
+import { observer } from 'mobx-react';
+import { Link } from 'react-router-dom';
 import useStore from 'hooks/useStore';
-import SearchList from 'components/views/SearchList';
+import { HomeIcon } from 'icons';
+import Login from './Login';
+import Logout from './Logout';
+import Profile from './Profile';
 
 function AppBar() {
-  const { AddDialogStore } = useStore();
-  const { pathname } = useLocation();
-  const handleClickAdd = () => {
-    AddDialogStore.openDialog({ open: true, view: <SearchList /> });
-  };
+  const { UserInfoStore } = useStore();
+  const { loginStatus } = UserInfoStore;
 
   return (
     <div className="layout-appbar">
@@ -17,9 +17,16 @@ function AppBar() {
         <HomeIcon />
         굿푸리
       </Link>
-      {pathname === '/' && <AddIcon onClick={handleClickAdd} />}
+      {loginStatus ? (
+        <div className="info-container">
+          <Profile />
+          <Logout />
+        </div>
+      ) : (
+        <Login />
+      )}
     </div>
   );
 }
 
-export default AppBar;
+export default observer(AppBar);

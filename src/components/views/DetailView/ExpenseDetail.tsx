@@ -22,7 +22,6 @@ function Expense(props: {
   }>;
 }) {
   const { expense } = props;
-  console.log(expense);
 
   return (
     <ul>
@@ -32,9 +31,9 @@ function Expense(props: {
         <Label value="비용" />
         <Label value="메뉴" />
       </li>
-      {expense.map(({ date, headcount, price, menu }) => {
+      {expense.map(({ date, headcount, price, menu }, i) => {
         return (
-          <li className="expense-list">
+          <li key={i} className="expense-list">
             <Typograpy type="p2" value={date} />
             <Typograpy type="p2" value={headcount + ' 명'} />
             <Typograpy

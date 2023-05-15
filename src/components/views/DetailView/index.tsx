@@ -2,6 +2,7 @@ import React from 'react';
 import ShopDetail from './ShopDetail';
 import ExpenseDetail from './ExpenseDetail';
 import RegisterExpense from './RegisterExpense';
+
 function DetailView({ detail, sheetFn }: any) {
   return (
     <>

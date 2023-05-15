@@ -1,4 +1,7 @@
 .layout-appbar {
+  position: fixed;
+  top: 0;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11,5 +14,33 @@
     height: 24px;
     color: #ffffff;
     font-weight: 500;
+  }
+
+  .info-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .profile {
+    > img {
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 1.1rem;
+      cursor: pointer;
+    }
+  }
+  .profile-info {
+    font-size: 0.9rem;
+    position: fixed;
+    top: 45px;
+    right: 30px;
+    width: 110px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 1px 1px 3px 1px #1e3050;
+    .nickname {
+      font-weight: 700;
+    }
   }
 }
