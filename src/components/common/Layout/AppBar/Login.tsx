@@ -3,8 +3,8 @@ import useStore from 'hooks/useStore';
 
 function Login() {
   const { UserInfoStore } = useStore();
-  const { loginStatus } = UserInfoStore;
-  const display = loginStatus ? 'block' : 'none';
+  const { isLoading } = UserInfoStore;
+  const display = isLoading ? 'none' : 'block';
 
   useEffect(() => {
     UserInfoStore.initNaverLogin();

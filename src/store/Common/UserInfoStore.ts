@@ -16,6 +16,8 @@ class UserInfoStore {
 
   loginStatus = false;
 
+  isLoading = true;
+
   constructor() {
     makeObservable(this, {
       user: observable,
@@ -34,7 +36,7 @@ class UserInfoStore {
     this.naverLogin.init();
     this.naverLogin.getLoginStatus((status: any) => {
       this.loginStatus = status;
-
+      this.isLoading = false;
       if (status) {
         this.setUserInfo();
       }
