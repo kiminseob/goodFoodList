@@ -4,11 +4,11 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'mobx-react';
 import { Reset } from 'styled-reset';
 import App from './App';
-import * as store from 'store';
+import RootStore from 'store/RootStore';
 import './scss/index.scss';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Provider {...store}>
+  <Provider {...RootStore}>
     <React.StrictMode>
       <Reset />
       <BrowserRouter>

@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import { AddDialogStore } from 'store';
 import useClickOutside from 'hooks/useClickOutside';
+import useStore from 'hooks/useStore';
 
 function AddDialog() {
-  const { options } = AddDialogStore;
-  const { open, view } = options;
+  const { addDialogStore } = useStore();
+  const { open, view } = addDialogStore.options;
 
   const dialogRef = useRef<HTMLDivElement>(null);
 
@@ -14,7 +14,7 @@ function AddDialog() {
   });
 
   useClickOutside(dialogRef, () => {
-    AddDialogStore.openDialog({ open: false, view: null });
+    addDialogStore.openDialog({ open: false, view: null });
   });
 
   return (

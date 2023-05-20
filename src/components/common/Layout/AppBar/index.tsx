@@ -8,8 +8,8 @@ import Logout from './Logout';
 import Profile from './Profile';
 
 function AppBar() {
-  const { UserInfoStore } = useStore();
-  const { loginStatus } = UserInfoStore;
+  const { userInfoStore } = useStore();
+  const { loginStatus } = userInfoStore;
 
   return (
     <div className="layout-appbar">

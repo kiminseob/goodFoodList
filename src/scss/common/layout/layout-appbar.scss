@@ -39,8 +39,17 @@
     padding: 1rem;
     border-radius: 4px;
     box-shadow: 1px 1px 3px 1px #1e3050;
-    .nickname {
-      font-weight: 700;
-    }
+  }
+}
+
+.nickname {
+  font-weight: 700;
+}
+
+.profile {
+  > img {
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 1.1rem;
   }
 }

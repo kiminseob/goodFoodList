@@ -1,7 +1,7 @@
 import React, { useRef, useCallback, useEffect } from 'react';
 
 function useInfiniteScroll(
-  playList: Record<string, any>[],
+  list: Record<string, any>[],
   data: Record<string, any>,
   setPage: React.Dispatch<React.SetStateAction<number>>,
   page: number
@@ -30,7 +30,7 @@ function useInfiniteScroll(
     if (loader.current) observer.observe(loader.current);
 
     return () => observer.disconnect();
-  }, [playList]);
+  }, [list]);
 
   return { loader };
 }

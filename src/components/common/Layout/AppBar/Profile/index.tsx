@@ -6,8 +6,8 @@ import ProfileInfo from './ProfileInfo';
 
 function Profile() {
   const [isOpen, setIsOpen] = useState(false);
-  const { UserInfoStore } = useStore();
-  const { user } = UserInfoStore;
+  const { userInfoStore } = useStore();
+  const { user } = userInfoStore;
 
   const handleClick = () => {
     setIsOpen((_isOpen) => !_isOpen);

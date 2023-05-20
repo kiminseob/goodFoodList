@@ -3,11 +3,11 @@ import ShopDetail from './ShopDetail';
 import ExpenseDetail from './ExpenseDetail';
 import RegisterExpense from './RegisterExpense';
 
-function DetailView({ detail, sheetFn }: any) {
+function DetailView({ detail, expense, sheetFn }: any) {
   return (
     <>
       <ShopDetail detail={detail} />
-      <ExpenseDetail detail={detail} />
+      <ExpenseDetail expense={expense} />
       <RegisterExpense detail={detail} sheetFn={sheetFn} />
     </>
   );

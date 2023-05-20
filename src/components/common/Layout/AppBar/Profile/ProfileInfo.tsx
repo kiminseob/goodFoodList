@@ -3,11 +3,11 @@ import React from 'react';
 
 type Props = {
   user: {
-    id: null;
-    name: null;
-    gender: null;
-    nickname: null;
-    profile_image: null;
+    id: string;
+    name: string;
+    gender: string;
+    nickname: string;
+    profile_image: string;
   };
 };
 

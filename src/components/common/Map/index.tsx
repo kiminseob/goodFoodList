@@ -3,7 +3,7 @@ import useStore from 'hooks/useStore';
 import { createMap } from 'utils/map';
 
 function Map(props: Record<string, any>) {
-  const { MapStore } = useStore();
+  const { mapStore } = useStore();
   const [map, setMap] = useState(null);
   const { items } = props;
 
@@ -19,10 +19,10 @@ function Map(props: Record<string, any>) {
   useEffect(() => {
     if (!map || !items) return;
 
-    MapStore.searchAddressToCoordinate(map, items);
+    mapStore.searchAddressToCoordinate(map, items);
 
     return () => {
-      MapStore.removeMarkers();
+      mapStore.removeMarkers();
     };
   }, [map, items?.address]);
 

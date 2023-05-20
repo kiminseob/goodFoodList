@@ -4,11 +4,11 @@ import { LogoutIcon } from 'icons';
 import useStore from 'hooks/useStore';
 
 function Logout() {
-  const { UserInfoStore } = useStore();
+  const { userInfoStore } = useStore();
   const location = useLocation();
 
   const handleClick = () => {
-    UserInfoStore.logout();
+    userInfoStore.logout();
     window.location.replace(location.pathname);
   };
 

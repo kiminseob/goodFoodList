@@ -23,4 +23,4 @@ class AddDialogStore extends Dialog {
   }
 }
 
-export default new AddDialogStore();
+export default AddDialogStore;

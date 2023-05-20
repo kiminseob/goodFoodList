@@ -2,14 +2,14 @@ import * as React from 'react';
 import { useLocation } from 'react-router-dom';
 import { CircleAddIcon } from 'icons';
 import useStore from 'hooks/useStore';
-import SearchList from 'components/views/SearchList';
+import SearchView from 'components/views/SearchView';
 
 function AddButton() {
-  const { AddDialogStore } = useStore();
+  const { addDialogStore } = useStore();
   const { pathname } = useLocation();
 
   const handleClickAdd = () => {
-    AddDialogStore.openDialog({ open: true, view: <SearchList /> });
+    addDialogStore.openDialog({ open: true, view: <SearchView /> });
   };
 
   return (

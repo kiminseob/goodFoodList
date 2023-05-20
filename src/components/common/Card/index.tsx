@@ -10,7 +10,7 @@ type CardProps = {
 const tagColors = ['yellow', 'blue', 'red'];
 
 function Card({ card }: CardProps) {
-  const { id, name, rating, category, imageURL } = card;
+  const { id, name, rating, category, imageURL, profile_image } = card;
 
   return (
     <div className="card-container">
@@ -22,9 +22,15 @@ function Card({ card }: CardProps) {
           alt="이미지 경로가 잘못되었습니다."
         />
         <div className="contents">
-          <Link className="title" to={`/shop/${id}`} state={card}>
-            {name}
-          </Link>
+          <div className="major">
+            <Link className="title" to={`/shop/${id}`} state={card}>
+              {name}
+            </Link>
+            <span className="profile">
+              <img src={profile_image} />
+            </span>
+          </div>
+
           <div className="rating">
             <StarIcon />
             <span>{rating ?? '평점 없음'}</span>

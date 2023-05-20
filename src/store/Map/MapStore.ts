@@ -35,4 +35,4 @@ class MapStore {
   };
 }
 
-export default new MapStore();
+export default MapStore;

@@ -6,9 +6,13 @@ import {
   CircleAddIcon,
 } from 'icons';
 import { Label, Input } from 'components/common/Element';
-import { info, success } from 'utils/toast';
+import { error, info, success } from 'utils/toast';
+import { currentDate } from 'utils/date';
+import useStore from 'hooks/useStore';
 import { SheetFn } from 'types/googlesheet';
 import { ShopDetailType } from 'types/shopDetail';
+import { SHEET_TITLE } from 'store/Googlesheet/GooglesheetStore';
+import useGoogleSheet from 'libs/googlesheet';
 
 function RegisterExpense({
   detail,
@@ -17,15 +21,11 @@ function RegisterExpense({
   detail: ShopDetailType;
   sheetFn: SheetFn;
 }) {
-  const currentDate = new Date()
-    .toLocaleDateString()
-    .replace(/\./g, '')
-    .split(' ')
-    .map((v: string, i) => (i > 0 && v.length < 2 ? '0' + v : v))
-    .join('-');
+  const { userInfoStore } = useStore();
+  const { addSheetRows } = sheetFn;
   const [isExtend, setIsExtend] = useState(false);
   const [expenseForm, setExpenseForm] = useState({
-    date: currentDate,
+    date: currentDate(),
     headcount: '',
     price: '',
     menu: '',
@@ -36,13 +36,27 @@ function RegisterExpense({
   };
 
   const handleSubmitExpense = (e: React.MouseEvent<SVGSVGElement>) => {
+    if (!userInfoStore.loginStatus) {
+      return info('로그인을 먼저 해주세요.');
+    }
+
     const isConfirm = confirm('지출 내역을 등록합니다.');
-    if (isConfirm) {
-      const transformedForm = detail.expense
-        ? JSON.stringify([...JSON.parse(detail.expense), expenseForm])
-        : JSON.stringify([expenseForm]);
-      sheetFn.updateSheetRows(detail.rowIndex, transformedForm, 'expense');
+
+    if (!isConfirm) return;
+
+    try {
+      const mergedForm = {
+        shopId: detail.id,
+        userId: userInfoStore.user.id,
+        name: userInfoStore.user.name,
+        nickname: userInfoStore.user.nickname,
+        profile_image: userInfoStore.user.profile_image,
+        ...expenseForm,
+      };
+      addSheetRows(SHEET_TITLE.EXPENSE, mergedForm);
       success('지출 내역을 등록하였습니다.');
+    } catch (e) {
+      error('지출 내역 등록에 실패하였습니다.');
     }
   };
 
@@ -50,6 +64,8 @@ function RegisterExpense({
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
+    if (name === 'price' && /[^0-9\,]/.test(value)) return;
+
     setExpenseForm((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -105,11 +121,12 @@ function RegisterExpense({
                 <Label value="비용" htmlFor="price" />
                 <Input
                   onChange={handleExpenseForm}
-                  type="number"
+                  type="text"
                   id="price"
                   name="price"
-                  value={expenseForm.price}
-                  min={0}
+                  value={Number(
+                    expenseForm.price.replaceAll(',', '')
+                  ).toLocaleString('ko-KR')}
                   required
                 />
                 {expenseForm.price && <CircleCheckIcon />}

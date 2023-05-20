@@ -117,6 +117,9 @@ const LogoutIcon = (props: Props) => (
     icon={solid('arrow-right-from-bracket')}
   />
 );
+const GhostIcon = (props: Props) => (
+  <FontAwesomeIcon {...props} icon={solid('ghost')} size="2xl" />
+);
 
 export {
   StarIcon,
@@ -134,4 +137,5 @@ export {
   GenderWomanIcon,
   GenderManIcon,
   LogoutIcon,
+  GhostIcon,
 };

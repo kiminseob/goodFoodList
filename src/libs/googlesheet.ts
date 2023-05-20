@@ -2,23 +2,31 @@ import { useEffect } from 'react';
 import { GoogleSpreadsheetRow } from 'google-spreadsheet';
 import { SheetFn } from 'types/googlesheet';
 import useStore from 'hooks/useStore';
-
+import type { SheetTitleValue } from 'types/googlesheet';
 type useGoogleSheetReturnType = [GoogleSpreadsheetRow[], SheetFn];
 
-const useGoogleSheet = (sheetId: number): useGoogleSheetReturnType => {
-  const { GooglesheetStore } = useStore();
-  const { sheetRows, fetchGoogleSheetRows, addSheetRows, updateSheetRows } =
-    GooglesheetStore;
+const useGoogleSheet = (
+  sheetTitle: SheetTitleValue
+): useGoogleSheetReturnType => {
+  const { googlesheetStore } = useStore();
+  const {
+    sheetRows,
+    isLoading,
+    fetchGoogleSheetRows,
+    addSheetRows,
+    updateSheetRows,
+  } = googlesheetStore;
 
   useEffect(() => {
-    fetchGoogleSheetRows(sheetId);
+    fetchGoogleSheetRows(sheetTitle);
   }, []);
 
   return [
-    sheetRows,
+    sheetRows[sheetTitle],
     {
       addSheetRows,
       updateSheetRows,
+      isLoading: isLoading[sheetTitle],
     },
   ];
 };

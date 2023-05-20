@@ -3,6 +3,9 @@
     display: flex;
     flex-wrap: wrap;
   }
+  .empty-data {
+    padding: calc(50vh - 52px - 28px) 0;
+  }
 }
 
 .card-container {
@@ -33,7 +36,11 @@
 
     .contents {
       padding: 19px;
-
+      .major {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
       .title {
         display: block;
         width: 249px;

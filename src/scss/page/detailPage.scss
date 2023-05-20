@@ -3,6 +3,7 @@
   max-width: 1250px;
 }
 
+.meta-info,
 .detail-contents {
   margin-top: 1rem;
   background-color: white;
@@ -16,6 +17,22 @@
   pre {
     max-width: 700px;
     white-space: break-spaces;
+  }
+}
+
+.meta-info {
+  background-color: lavender;
+  display: flex;
+  align-items: center;
+
+  > span {
+    display: flex;
+    align-items: center;
+
+    > p,
+    img {
+      margin-right: 0.5rem;
+    }
   }
 }
 
@@ -55,9 +72,20 @@ ul {
   li.expense-list {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-top: 1rem;
 
-    > p {
+    > div {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      .profile {
+        margin-right: 0.5rem;
+      }
+    }
+
+    > p,
+    div {
       width: 25%;
     }
 

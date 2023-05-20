@@ -1,4 +1,4 @@
-import { makeObservable, action, observable } from 'mobx';
+import { makeObservable, action, observable, toJS } from 'mobx';
 
 const { naver } = window;
 const callbackUrl = 'http://localhost:3000/oauth';
@@ -6,12 +6,12 @@ const callbackUrl = 'http://localhost:3000/oauth';
 class UserInfoStore {
   naverLogin: any;
 
-  user = {
-    id: null,
-    name: null,
-    gender: null,
-    nickname: null,
-    profile_image: null,
+  _user = {
+    id: '',
+    name: '',
+    gender: '',
+    nickname: '',
+    profile_image: '',
   };
 
   loginStatus = false;
@@ -20,7 +20,7 @@ class UserInfoStore {
 
   constructor() {
     makeObservable(this, {
-      user: observable,
+      _user: observable,
       loginStatus: observable,
       initNaverLogin: action,
     });
@@ -43,13 +43,17 @@ class UserInfoStore {
     });
   }
 
-  setUserInfo() {
-    this.user = { ...this.naverLogin.user };
-  }
-
   logout() {
     this.naverLogin.logout();
   }
+
+  get user() {
+    return toJS(this._user);
+  }
+
+  setUserInfo() {
+    this._user = { ...this.naverLogin.user };
+  }
 }
 
-export default new UserInfoStore();
+export default UserInfoStore;
