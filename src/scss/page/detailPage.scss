@@ -65,15 +65,16 @@
     }
   }
 }
-ul {
-  li.expense-list:first-child {
-  }
 
+ul {
   li.expense-list {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1rem;
+
+    &:not(:first-of-type) {
+      margin-top: 1rem;
+    }
 
     > div {
       display: flex;
@@ -87,6 +88,38 @@ ul {
     > p,
     div {
       width: 25%;
+    }
+
+    label {
+      margin-top: 1rem;
+      font-weight: 600;
+      width: 25%;
+      position: relative;
+      &::after {
+        content: '';
+        margin-top: 0.5rem;
+        border-bottom: 1px solid #1e305032;
+        width: 90%;
+        display: block;
+      }
+    }
+  }
+}
+
+ul {
+  li.review-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+
+    > div {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      .profile {
+        margin-right: 0.5rem;
+      }
     }
 
     label {

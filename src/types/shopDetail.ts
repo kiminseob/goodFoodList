@@ -19,8 +19,20 @@ export type ShopExpenseType = GoogleSpreadsheetRow & {
   name: string;
   nickname: string;
   profile_image: string;
+  timeStamp: string;
   date: string;
   headcount: number;
   price: number;
   menu: string;
+};
+
+export type ShopReviewType = GoogleSpreadsheetRow & {
+  shopId: number;
+  userId: number;
+  name: string;
+  nickname: string;
+  profile_image: string;
+  timeStamp: string;
+  rating: number;
+  review: string;
 };

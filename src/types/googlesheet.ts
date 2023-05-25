@@ -1,6 +1,8 @@
 import type { GoogleSpreadsheetRow } from 'google-spreadsheet';
+import { SHEET_TITLE } from 'store/Googlesheet/GooglesheetStore';
 
-export type SheetTitleType = { ALL: 'All'; EXPENSE: 'Expense'; USER: 'User' };
+export type SheetTitleType = typeof SHEET_TITLE;
+
 export type SheetTitleValue = SheetTitleType[keyof SheetTitleType];
 
 export type AddsheetRows = (

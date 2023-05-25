@@ -13,14 +13,22 @@ function ShopDetailPage() {
   const { shopId } = useParams<Params>();
   const [shopSheetRows, sheetFn] = useGoogleSheet(SHEET_TITLE.ALL);
   const [expenseSheetRows] = useGoogleSheet(SHEET_TITLE.EXPENSE);
+  const [reviewSheetRows] = useGoogleSheet(SHEET_TITLE.REVIEW);
+
   const detail = shopSheetRows.filter((row) => row.id === shopId)[0];
   const expense = expenseSheetRows.filter((row) => row.shopId === shopId);
+  const review = reviewSheetRows.filter((row) => row.shopId === shopId);
 
   if (!detail || !expense) return null;
 
   return (
     <div className="detail-container">
-      <ShopDetailView detail={detail} expense={expense} sheetFn={sheetFn} />
+      <ShopDetailView
+        detail={detail}
+        expense={expense}
+        review={review}
+        sheetFn={sheetFn}
+      />
     </div>
   );
 }

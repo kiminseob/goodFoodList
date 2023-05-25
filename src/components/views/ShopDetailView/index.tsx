@@ -1,14 +1,18 @@
 import React from 'react';
-import ShopDetail from './ShopDetail';
-import ExpenseDetail from './ExpenseDetail';
-import RegisterExpense from './RegisterExpense';
+import ShopDetail from './Shop/ShopDetail';
+import ExpenseDetail from './Expense/ExpenseDetail';
+import ExpenseRegister from './Expense/ExpenseRegister';
+import ReviewRegister from './Review/ReviewRegister';
+import ReviewDetail from './Review/ReviewDetail';
 
-function DetailView({ detail, expense, sheetFn }: any) {
+function DetailView({ detail, expense, review, sheetFn }: any) {
   return (
     <>
       <ShopDetail detail={detail} />
       <ExpenseDetail expense={expense} />
-      <RegisterExpense detail={detail} sheetFn={sheetFn} />
+      <ReviewDetail review={review} />
+      <ExpenseRegister detail={detail} sheetFn={sheetFn} />
+      <ReviewRegister detail={detail} sheetFn={sheetFn} />
     </>
   );
 }

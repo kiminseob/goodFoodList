@@ -3,14 +3,19 @@ import {
   FontAwesomeIcon,
   FontAwesomeIconProps,
 } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 type Props = Partial<FontAwesomeIconProps> & {
   disabled?: boolean;
+  isregular?: string;
 };
 
-const StarIcon = () => (
-  <FontAwesomeIcon style={{ color: '#FFBA00' }} icon={solid('star')} />
+const StarIcon = (props: Props) => (
+  <FontAwesomeIcon
+    style={{ color: '#FFBA00' }}
+    icon={props.isregular === 'true' ? regular('star') : solid('star')}
+    {...props}
+  />
 );
 const AddIcon = (props: Props) => (
   <FontAwesomeIcon

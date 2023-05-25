@@ -12,9 +12,8 @@ import useStore from 'hooks/useStore';
 import { SheetFn } from 'types/googlesheet';
 import { ShopDetailType } from 'types/shopDetail';
 import { SHEET_TITLE } from 'store/Googlesheet/GooglesheetStore';
-import useGoogleSheet from 'libs/googlesheet';
 
-function RegisterExpense({
+function ExpenseRegister({
   detail,
   sheetFn,
 }: {
@@ -23,7 +22,7 @@ function RegisterExpense({
 }) {
   const { userInfoStore } = useStore();
   const { addSheetRows } = sheetFn;
-  const [isExtend, setIsExtend] = useState(false);
+  const [isExtend, setIsExtend] = useState(true);
   const [expenseForm, setExpenseForm] = useState({
     date: currentDate(),
     headcount: '',
@@ -152,4 +151,4 @@ function RegisterExpense({
   );
 }
 
-export default RegisterExpense;
+export default ExpenseRegister;

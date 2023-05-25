@@ -1,7 +1,6 @@
 import React from 'react';
 import { Label, Typograpy } from 'components/common/Element';
 import { ShopExpenseType } from 'types/shopDetail';
-import useGoogleSheet from 'libs/googlesheet';
 
 function ExpenseDetail({ expense }: { expense: ShopExpenseType[] }) {
   return (
@@ -40,10 +39,7 @@ function Expense({ expense }: { expense: ShopExpenseType[] }) {
               </div>
               <Typograpy type="p2" value={date} />
               <Typograpy type="p2" value={headcount + ' 명'} />
-              <Typograpy
-                type="p2"
-                value={Number(price).toLocaleString('ko-KR') + ' 원'}
-              />
+              <Typograpy type="p2" value={price + ' 원'} />
               <Typograpy type="p2" value={menu} />
             </li>
           );

@@ -7,27 +7,33 @@ import {
 import credential from 'db/googleSpreadsheet.json';
 import { currentDate, currentTime } from 'utils/date';
 import _ from 'lodash';
-import type { SheetTitleType, SheetTitleValue } from 'types/googlesheet';
+import type { SheetTitleValue } from 'types/googlesheet';
 
-export const SHEET_TITLE: SheetTitleType = {
+export const SHEET_TITLE = {
   ALL: 'All',
   EXPENSE: 'Expense',
   USER: 'User',
+  REVIEW: 'Review',
 };
 
 type SheetType = Record<SheetTitleValue, GoogleSpreadsheetWorksheet | null>;
 type SheetRowType = Record<SheetTitleValue, GoogleSpreadsheetRow[]>;
 
 class GooglesheetStore {
-  _sheet: SheetType = { All: null, Expense: null, User: null };
-  _sheetRows: SheetRowType = { All: [], Expense: [], User: [] };
-  isLoading = { All: true, Expense: true, User: true };
+  _sheet: SheetType = { All: null, Expense: null, User: null, Review: null };
+  _sheetRows: SheetRowType = { All: [], Expense: [], User: [], Review: [] };
+  _isLoading: Record<SheetTitleValue, boolean> = {
+    All: true,
+    Expense: true,
+    User: true,
+    Review: true,
+  };
 
   constructor() {
     makeObservable(this, {
       _sheet: observable,
       _sheetRows: observable,
-      isLoading: observable,
+      _isLoading: observable,
       fetchGoogleSheetRows: flow.bound,
       addSheetRows: flow.bound,
       updateSheetRows: flow.bound,
@@ -41,7 +47,7 @@ class GooglesheetStore {
 
     this._sheet[sheetTitle] = sheet;
     this._sheetRows[sheetTitle] = sheetRows;
-    this.isLoading[sheetTitle] = false;
+    this._isLoading[sheetTitle] = false;
   }
 
   *addSheetRows(
@@ -99,6 +105,10 @@ class GooglesheetStore {
 
   get sheetRows() {
     return toJS(this._sheetRows);
+  }
+
+  get isLoading() {
+    return toJS(this._isLoading);
   }
 }
 

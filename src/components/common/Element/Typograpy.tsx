@@ -1,22 +1,46 @@
 import * as React from 'react';
 type elementProps = {
   children: string | number;
+  style?: React.CSSProperties;
 };
+
 const element = {
-  h1: ({ children }: elementProps) => <h1 className="h1">{children}</h1>,
-  h2: ({ children }: elementProps) => <h2 className="h2">{children}</h2>,
-  p1: ({ children }: elementProps) => <p className="p1">{children}</p>,
-  p2: ({ children }: elementProps) => <p className="p2">{children}</p>,
+  h1: ({ children, style }: elementProps) => (
+    <h1 className="h1" style={style}>
+      {children}
+    </h1>
+  ),
+  h2: ({ children, style }: elementProps) => (
+    <h2 className="h2" style={style}>
+      {children}
+    </h2>
+  ),
+  p1: ({ children, style }: elementProps) => (
+    <p className="p1" style={style}>
+      {children}
+    </p>
+  ),
+  p2: ({ children, style }: elementProps) => (
+    <p className="p2" style={style}>
+      {children}
+    </p>
+  ),
+  pre: ({ children, style }: elementProps) => (
+    <pre className="pre" style={style}>
+      {children}
+    </pre>
+  ),
 };
 
 function Typograpy(props: {
-  type: 'h1' | 'h2' | 'p1' | 'p2';
+  type: 'h1' | 'h2' | 'p1' | 'p2' | 'pre';
   value: string | number;
+  style?: React.CSSProperties;
 }) {
-  const { type, value } = props;
+  const { type, value, style } = props;
   const Element = element[type];
 
-  return <Element>{value}</Element>;
+  return <Element style={{ ...style }}>{value}</Element>;
 }
 
 export default Typograpy;

@@ -2,6 +2,7 @@
 @import './map';
 @import './card';
 @import './dialog';
+@import './element';
 
 :root {
   --font-size-lg: clamp(2rem, 2vw, 3rem);
@@ -46,6 +47,7 @@ div {
 
 .label {
   min-width: fit-content;
+  margin-right: 1.5rem;
 }
 
 .fa-disabled {
@@ -55,9 +57,4 @@ div {
 .fa-actived {
   cursor: pointer;
   color: #1e3050;
-}
-
-input,
-textarea {
-  margin-left: 1.5rem;
 }
