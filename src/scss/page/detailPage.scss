@@ -11,6 +11,11 @@
   box-shadow: 1px 1px 3px 1px #dadce0;
   border-radius: 8px;
 
+  &.disabled {
+    background-color: #cccccc;
+    text-align: center;
+  }
+
   div {
     margin: 1rem 0;
   }
@@ -111,7 +116,7 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1rem;
+    padding: 0.5rem 0;
 
     > div {
       display: flex;

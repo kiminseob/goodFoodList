@@ -3,13 +3,16 @@ import { Label, Typograpy } from 'components/common/Element';
 import { ShopExpenseType } from 'types/shopDetail';
 
 function ExpenseDetail({ expense }: { expense: ShopExpenseType[] }) {
+  const hasExpense = Boolean(expense.length);
+
   return (
     <>
       <div className="detail-contents">
         <Typograpy type="h2" value="지출 내역" />
       </div>
-      <div className="detail-contents">
-        {expense && <Expense expense={expense} />}
+      <div className={`detail-contents ${!hasExpense && 'disabled'}`}>
+        {!hasExpense && '지출 내역이 없습니다.'}
+        {hasExpense && <Expense expense={expense} />}
       </div>
     </>
   );

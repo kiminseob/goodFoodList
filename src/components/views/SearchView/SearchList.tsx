@@ -36,7 +36,7 @@ function SearchList(props: SearchListType) {
         {!error && <li ref={loader} />}
       </ul>
       <button className="add-shop-btn" onClick={handleClickAddItem}>
-        맛집 추가하기
+        추가
       </button>
     </>
   );

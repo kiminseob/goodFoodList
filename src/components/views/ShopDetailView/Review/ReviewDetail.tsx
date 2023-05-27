@@ -3,13 +3,16 @@ import { Label, StarRating, Typograpy } from 'components/common/Element';
 import { ShopReviewType } from 'types/shopDetail';
 
 function ReviewDetail({ review }: { review: ShopReviewType[] }) {
+  const hasReview = Boolean(review.length);
+
   return (
     <>
       <div className="detail-contents">
         <Typograpy type="h2" value="리뷰" />
       </div>
-      <div className="detail-contents">
-        {review && <Review review={review} />}
+      <div className={`detail-contents ${!hasReview && 'disabled'}`}>
+        {!hasReview && '리뷰가 없습니다.'}
+        {hasReview && <Review review={review} />}
       </div>
     </>
   );
