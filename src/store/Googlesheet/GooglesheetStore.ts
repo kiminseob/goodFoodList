@@ -45,9 +45,9 @@ class GooglesheetStore {
     const sheet: GoogleSpreadsheetWorksheet = doc.sheetsByTitle[sheetTitle];
     const sheetRows: GoogleSpreadsheetRow[] = yield sheet.getRows();
 
-    this._sheet[sheetTitle] = sheet;
-    this._sheetRows[sheetTitle] = sheetRows;
-    this._isLoading[sheetTitle] = false;
+    this._sheet = { ...this._sheet, [sheetTitle]: sheet };
+    this._sheetRows = { ...this._sheetRows, [sheetTitle]: sheetRows };
+    this._isLoading = { ...this._isLoading, [sheetTitle]: false };
   }
 
   *addSheetRows(

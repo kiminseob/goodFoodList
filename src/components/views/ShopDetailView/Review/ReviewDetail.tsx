@@ -1,5 +1,5 @@
 import React from 'react';
-import { Label, StarRating, Typograpy } from 'components/common/Element';
+import { StarRating, Typograpy } from 'components/common/Element';
 import { ShopReviewType } from 'types/shopDetail';
 import useResizeEvent from 'hooks/useResizeEvent';
 
