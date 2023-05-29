@@ -24,7 +24,7 @@ function OAuthPage() {
       const token_type = splited[2]?.split('=')[1];
       const expires_in = splited[3]?.split('=')[1];
 
-      if (!loginStatus) return;
+      if (!loginStatus || !sheetRows.length) return;
 
       const targetRow = sheetRows.filter(({ id }) => id === user.id)[0];
 
@@ -37,7 +37,7 @@ function OAuthPage() {
       console.error(e);
     }
     window.location.replace('/');
-  }, [sheetRows]);
+  }, [sheetRows, loginStatus]);
   return <></>;
 }
 

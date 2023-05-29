@@ -13,7 +13,7 @@ function StarRating(props: StarRatingProps) {
   return (
     <div className="star-rating">
       {[...Array(5)].map((star, index) => (
-        <span onClick={() => handleRating(index + 1)}>
+        <span key={index} onClick={() => handleRating(index + 1)}>
           <StarIcon
             id="rating"
             key={index}

@@ -1,7 +1,10 @@
 import { makeObservable, action, observable, toJS } from 'mobx';
 
 const { naver } = window;
-const callbackUrl = 'http://localhost:3000/oauth';
+const callbackUrl =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000/oauth'
+    : 'https://goodfoodlist.inseop.pe.kr/oauth';
 
 class UserInfoStore {
   naverLogin: any;
@@ -23,6 +26,7 @@ class UserInfoStore {
       _user: observable,
       loginStatus: observable,
       initNaverLogin: action,
+      isLoading: observable,
     });
   }
 

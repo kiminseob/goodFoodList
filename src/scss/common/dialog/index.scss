@@ -7,7 +7,7 @@
   z-index: 1000;
   width: 90%;
   max-width: 1100px;
-  height: 670px;
+  height: 80%;
   box-shadow: 0px 13.3161px 55.4839px rgba(37, 31, 48, 0.05);
   border-radius: 25px;
   top: 50%;
@@ -15,6 +15,9 @@
   transform: translate(-50%, -50%);
 
   .search {
+    height: 2rem;
+    display: flex;
+    align-items: center;
     margin-bottom: 0.5rem;
     input {
       height: 25px;
@@ -28,12 +31,17 @@
   }
 
   .search-list-container {
+    height: calc(100% - 6rem);
+
+    @media (max-width: 860px) {
+      width: fit-content;
+    }
     .map-container {
-      @media (max-width: 500px) {
+      @media (max-width: 860px) {
         height: 50%;
       }
     }
-    @media (max-width: 500px) {
+    @media (max-width: 860px) {
       flex-direction: column-reverse;
     }
     width: 100%;
@@ -51,7 +59,7 @@
       overflow-x: hidden;
 
       .search-list {
-        @media (max-width: 500px) {
+        @media (max-width: 860px) {
           width: 80%;
         }
         width: 314px;

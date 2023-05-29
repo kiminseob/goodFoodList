@@ -19,9 +19,10 @@ function AddButton() {
           style={{
             position: 'fixed',
             top: '60px',
-            right: '20px',
+            right: '12px',
             borderRadius: '16px',
             boxShadow: '1px 1px 3px 1px #1e3050',
+            zIndex: 2,
           }}
           onClick={handleClickAdd}
         />

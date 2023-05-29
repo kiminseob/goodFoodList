@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import useStore from 'hooks/useStore';
+import { observer } from 'mobx-react';
 
 function Login() {
   const { userInfoStore } = useStore();
@@ -13,4 +14,4 @@ function Login() {
   return <div id="naverIdLogin" style={{ display }} />;
 }
 
-export default Login;
+export default observer(Login);

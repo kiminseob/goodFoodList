@@ -2,6 +2,10 @@
   .card-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    @media (max-width: 860px) {
+      justify-content: center;
+    }
   }
   .empty-data {
     padding: calc(50vh - 52px - 28px) 0;

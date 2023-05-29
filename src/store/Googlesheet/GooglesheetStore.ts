@@ -31,8 +31,8 @@ class GooglesheetStore {
 
   constructor() {
     makeObservable(this, {
-      _sheet: observable,
-      _sheetRows: observable,
+      _sheet: observable.ref,
+      _sheetRows: observable.ref,
       _isLoading: observable,
       fetchGoogleSheetRows: flow.bound,
       addSheetRows: flow.bound,
