@@ -12,7 +12,6 @@ class UserInfoStore {
   _user = {
     id: '',
     name: '',
-    gender: '',
     nickname: '',
     profile_image: '',
   };

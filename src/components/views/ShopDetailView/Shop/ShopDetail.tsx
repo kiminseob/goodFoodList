@@ -33,7 +33,7 @@ function ShopDetail({ detail }: { detail: ShopDetailType }) {
             <img src={user.profile_image} />
           </span>
           <span className="nickname">
-            <Typograpy type="p2" value={`${user.nickname}님`} />
+            <Typograpy type="p2" value={`${user.nickname ?? user.name}님`} />
           </span>
           <span>({timeStamp})</span>
         </div>
